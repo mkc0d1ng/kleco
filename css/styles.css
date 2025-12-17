@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Monadi';
+  src: url('../assets/fonts/Monadi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: #f0f4f0;
+  font-family: 'Monadi', 'Cairo', 'Tajawal', sans-serif;
+  font-size: 15px;
+  color: #c8788c !important;
+}
+
+
+
+.stat-card h3{
+  color:#2d6a4f;
+}
+
+.stat-card:hover{
+  transform: translateY(-4px);
+  transition: 0.2s;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.navbar {
+    background-color: #e9e8dc !important;
+}
+
+.fa-solid {
+  color: #c8788c !important;
+}
+
+.fw-bold, .dt-info {
+  color: black !important;
+}
+
+a {
+    color: black !important;
+}
+
+label {
+  color: black;
+}
+
+/* محاذاة مربع البحث DataTables لليمين بشكل قاطع */
+.dataTables_wrapper .dataTables_filter {
+    float: none !important;          
+    display: block !important;       /* تغيير flex إلى block */
+    text-align: right !important;    /* محاذاة النص لليمين */
+    margin-bottom: 10px;            
+}
+
+.modal-header .btn-close {
+  display: none;
+}
+.modal-content .btn {
+  order: -1; /* يجعل الزر يظهر قبل أي عنصر آخر */
+  margin-right: 1rem; /* مسافة صغيرة من العنوان */
+}
+
+.admin-section{
+  margin-right: 0px;
+}

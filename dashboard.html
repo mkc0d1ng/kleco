@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LKeco — لوحة التحكم</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- DataTables Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success px-3">
+    <img src="assets/img/lkeco.png" alt="Logo" style="height:40px; width:auto;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#" data-section="dashboard" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-section="assets" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show">إدارة الممتلكات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-section="purchases" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show">إدارة المشتريات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-section="repairs" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show">إدارة الإصلاحات</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="container-fluid  my-4">
+
+    <!-- Dashboard -->
+    <div class="section admin-section" id="dashboard">
+      <div class="p-4 rounded bg-white shadow-sm">
+        <h2 class="fw-bold">مرحباً بك في نظام LKeco</h2>
+        <p class="text-muted mb-0">إدارة سهلة للمصاريف والمخزون — لوحة تحكم خاصة بالمقتصد.</p>
+      </div>
+
+      <!-- Statistics -->
+      <div class="row g-3 mt-2">
+        <div class="col-md-4">
+          <div class="text-center shadow-sm p-3 bg-white rounded">
+            <i class="fa-solid fa-coins fa-2x text-success mb-2"></i>
+            <h3 class="fw-bold">0</h3>
+            <p class="text-muted">مجموع المصاريف</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center shadow-sm p-3 bg-white rounded">
+            <i class="fa-solid fa-list-check fa-2x text-success mb-2"></i>
+            <h3 class="fw-bold">0</h3>
+            <p class="text-muted">عدد العمليات</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center shadow-sm p-3 bg-white rounded">
+            <i class="fa-solid fa-clock fa-2x text-success mb-2"></i>
+            <h3 class="fw-bold">—</h3>
+            <p class="text-muted">آخر عملية</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- إدارة الممتلكات -->
+    <div class="section admin-section d-none" id="assets">
+
+      <div class="d-flex justify-content-between align-items-center mb-1 mt-1">
+        <h4 class="fw-bold text-success mb-0">
+          <i class="fa-solid fa-building"></i> إدارة الممتلكات
+        </h4>
+
+        <button class="btn btn-dark pb-0" onclick="openAddModal()">
+          <i class="fa-solid fa-plus"></i> إضافة ممتلك جديد
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-success">
+            <tr>
+              <th>ر.ت</th>
+              <th>الاسم</th>
+              <th>النوع</th>
+              <th>الموقع</th>
+              <th>الحالة</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="assetsTable">
+            <!-- 
+            <tr>
+              <th>11001</th>
+              <th>حاسوب مكتبي</th>
+              <th>تجهيزات معلوماتية</th>
+              <th>قاعة الإعلاميات</th>
+              <th>يعمل</th>
+              <th>
+                <button class="btn btn-sm btn-warning" onclick="openEditModal(this)"> <i class="fa-solid fa-pen"></i></button>
+                <button class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
+              </th>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+    <!-- إدارة المشتريات -->
+    <div class="section admin-section d-none" id="purchases">
+      <div class="d-flex justify-content-between align-items-center mb-1 mt-1">
+        <h4 class="fw-bold text-success mb-0">
+          <i class="fa-solid fa-building"></i> إدارة المشتريات
+        </h4>
+
+        <button class="btn btn-dark pb-0">
+          <i class="fa-solid fa-plus"></i> إضافة مشتريات
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>ر.ت</th>
+              <th>اسم المنتج</th>
+              <th>الكمية</th>
+              <th>السعر</th>
+              <th>المورد</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- بيانات المشتريات هنا -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- إدارة الإصلاحات -->
+    <div class="section admin-section d-none" id="repairs">
+      <div class="d-flex justify-content-between align-items-center mb-1 mt-1">
+        <h4 class="fw-bold text-success mb-0">
+          <i class="fa-solid fa-building"></i> إدارة الإصلاحات
+        </h4>
+
+        <button class="btn btn-dark pb-0">
+          <i class="fa-solid fa-plus"></i> إضافة إصلاح
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table id="exampleRepairs" class="table table-striped table-bordered align-middle">
+          <thead class="table-warning">
+            <tr>
+              <th>ر.ت</th>
+              <th>الوصف</th>
+              <th>الموقع</th>
+              <th>التكلفة</th>
+              <th>الحالة</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- بيانات الإصلاحات هنا -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="text-center mt-4 text-muted">
+      © كل الحقوق محفوظة — LKeco
+    </footer>
+
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="addAssetModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="assetModalTitle"></i>أدخل المعلومات</i></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form id="assetForm">
+            <div class="row g-3">
+
+              <!-- رقم تسلسلي -->
+              <div class="col-md-6">
+                <label class="form-label">ر.ت</label>
+                <input type="number" id="assetId" class="form-control" placeholder="أدخل رقم تسلسلي" required>
+              </div>
+
+              <!-- اسم الممتلك -->
+              <div class="col-md-6">
+                <label class="form-label">الاسم</label>
+                <input type="text" id="assetName" class="form-control" placeholder="أدخل اسم الممتلك" required>
+              </div>
+
+              <!-- النوع (ComboBox مع إمكانية الكتابة) -->
+              <div class="col-md-6">
+                <label class="form-label">النوع</label>
+                <input class="form-control" id="assetType" list="types" placeholder="اختر أو اكتب النوع">
+                <datalist id="types">
+                  <option value="تجهيزات معلوماتية">
+                  <option value="تجهيزات تعليمية">
+                  <option value="مواد استهلاكية">
+                  <option value="أثاث وتجهيزات">
+                </datalist>
+              </div>
+
+              <!-- الموقع (ComboBox مع إمكانية الكتابة) -->
+              <div class="col-md-6">
+                <label class="form-label">الموقع</label>
+                <input class="form-control" id="assetLocation" list="locations" placeholder="اختر أو اكتب الموقع">
+                <datalist id="locations">
+                  <option value="قاعة الإعلاميات">
+                  <option value="المختبر">
+                  <option value="الإدارة">
+                  <option value="المخزن">
+                </datalist>
+              </div>
+
+              <!-- الحالة (ComboBox مع إمكانية الكتابة) -->
+              <div class="col-md-6">
+                <label class="form-label">الحالة</label>
+                <input class="form-control" id="assetState" list="states" placeholder="اختر أو اكتب الحالة">
+                <datalist id="states">
+                  <option value="يعمل">
+                  <option value="معطل">
+                  <option value="قيد الصيانة">
+                </datalist>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+          <button type="button" class="btn btn-dark" id="saveBtn"><i class="fa-solid fa-check"></i> حفظ</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addPurchaseModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Form المشتريات هنا -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addRepairModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Form الإصلاحات هنا -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+ <script>
+  /* =========================
+     التنقل بين الأقسام
+  ========================== */
+  document.querySelectorAll('nav a[data-section]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.dataset.section;
+
+      document.querySelectorAll('.section').forEach(sec => sec.classList.add('d-none'));
+      document.getElementById(target).classList.remove('d-none');
+
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  /* =========================
+     Modal الإضافة / التعديل
+  ========================== */
+  let editRow = null;
+  const assetModal = document.getElementById("addAssetModal");
+  const modalTitle = document.getElementById("assetModalTitle");
+  const saveBtn = document.getElementById("saveBtn");
+
+  // فتح modal للإضافة
+  function openAddModal() {
+    editRow = null;
+    modalTitle.innerText = "إضافة ممتلك جديد";
+    saveBtn.innerText = "حفظ";
+    clearForm();
+    new bootstrap.Modal(assetModal).show();
+  }
+
+  // فتح modal للتعديل
+  function openEditModal(btn) {
+    editRow = btn.closest("tr");
+    modalTitle.innerText = "تعديل ممتلك";
+    saveBtn.innerText = "تحديث";
+
+    assetId.value       = editRow.cells[0].innerText;
+    assetName.value     = editRow.cells[1].innerText;
+    assetType.value     = editRow.cells[2].innerText;
+    assetLocation.value = editRow.cells[3].innerText;
+    assetState.value    = editRow.cells[4].innerText;
+
+    new bootstrap.Modal(assetModal).show();
+  }
+
+  // حفظ (إضافة أو تعديل)
+  saveBtn.addEventListener("click", () => {
+    const id       = assetId.value.trim();
+    const name     = assetName.value.trim();
+    const type     = assetType.value.trim();
+    const location = assetLocation.value.trim();
+    const state    = assetState.value.trim();
+
+    if (!id || !name) {
+      alert("يرجى ملء الحقول الأساسية");
+      return;
+    }
+
+    if (editRow) {
+      // تعديل
+      editRow.cells[0].innerText = id;
+      editRow.cells[1].innerText = name;
+      editRow.cells[2].innerText = type;
+      editRow.cells[3].innerText = location;
+      editRow.cells[4].innerText = state;
+    } else {
+      // إضافة
+      document.getElementById("assetsTable").insertAdjacentHTML("beforeend", `
+          <tr>
+            <td>${id}</td>
+            <td>${name}</td>
+            <td>${type}</td>
+            <td>${location}</td>
+            <td>${state}</td>
+            <td>
+              <button class="btn btn-sm btn-warning" onclick="openEditModal(this)">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+      `);
+    }
+
+    bootstrap.Modal.getInstance(assetModal).hide();
+  });
+
+  // مسح الحقول
+  function clearForm() {
+    assetId.value = "";
+    assetName.value = "";
+    assetType.value = "";
+    assetLocation.value = "";
+    assetState.value = "";
+  }
+</script>
+
+
+</body>
+
+</html>
